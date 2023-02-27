@@ -424,6 +424,7 @@ pub async fn check_message_validity<
     graph_node_endpoint: &str,
 ) -> Result<GraphcastMessage<T>, anyhow::Error> {
     let mock_nonce = env::var("MOCK_NONCE");
+    debug!("Mock nonce? {:?}", mock_nonce);
     graphcast_message.nonce = mock_nonce.unwrap_or(graphcast_message.nonce.to_string()).parse().unwrap();
 
     graphcast_message
