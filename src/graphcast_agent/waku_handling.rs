@@ -417,12 +417,15 @@ pub async fn handle_signal<
 pub async fn check_message_validity<
     T: Message + ethers::types::transaction::eip712::Eip712 + Default + Clone + 'static,
 >(
-    graphcast_message: GraphcastMessage<T>,
+    mut graphcast_message: GraphcastMessage<T>,
     nonces: &Arc<Mutex<NoncesMap>>,
     registry_subgraph: &str,
     network_subgraph: &str,
     graph_node_endpoint: &str,
 ) -> Result<GraphcastMessage<T>, anyhow::Error> {
+    let mock_nonce = env::var("MOCK_NONCE");
+    graphcast_message.nonce = mock_nonce.unwrap_or(graphcast_message.nonce.to_string()).parse().unwrap();
+
     graphcast_message
         .valid_sender(registry_subgraph, network_subgraph)
         .await?
