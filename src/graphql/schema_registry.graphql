@@ -1,0 +1,12 @@
+input Indexer_filter {
+  id: String!
+}
+
+type Indexer {
+  id: String!
+  graphcastID: String!
+}
+
+type Query {
+    indexers(filter: Indexer_filter): [Indexer!]!
+}

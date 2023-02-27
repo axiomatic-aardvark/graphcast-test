@@ -1,0 +1,21 @@
+type GraphNetwork {
+  minimumIndexerStake: String!
+}
+
+type SubgraphDeployment {
+  ipfsHash: String!
+}
+
+type Allocation {
+  subgraphDeployment: SubgraphDeployment!
+}
+
+type Indexer {
+  stakedTokens: String!
+  allocations: [Allocation!]
+}
+
+type Query {
+  indexer(id: String!): Indexer
+  graphNetwork(id: Int!): GraphNetwork!
+}

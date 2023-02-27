@@ -1,0 +1,12 @@
+.envrc
+.env
+/target
+examples/target
+examples/*/target
+/Cargo.lock
+/.idea
+/.fleet
+/examples/target
+boot_node_addr.conf
+test_tree_zone.txt
+txt_records.json
